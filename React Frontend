@@ -1,0 +1,87 @@
+// TrendFlicks Studio - React Frontend (UI Only for Phase 2)
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+
+export default function TrendFlicksStudio() {
+  const [image, setImage] = useState(null);
+  const [music, setMusic] = useState("");
+  const [background, setBackground] = useState("");
+  const [filter, setFilter] = useState("");
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSubmit = () => {
+    alert("Reel will be generated soon... (backend in progress)");
+  };
+
+  return (
+    <div className="p-6 max-w-4xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6 text-center text-pink-600">TrendFlicks Studio</h1>
+
+      <Card className="mb-6">
+        <CardContent className="p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="font-semibold">Upload Your Photo</label>
+              <Input type="file" accept="image/*" onChange={handleImageUpload} />
+              {image && <img src={image} alt="Preview" className="mt-2 w-full rounded-xl" />}
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="font-semibold">Select Music</label>
+                <Select onValueChange={setMusic}>
+                  <SelectTrigger><SelectValue placeholder="Choose Music" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="lofi">Lofi</SelectItem>
+                    <SelectItem value="fashion">Trendy Fashion Beat</SelectItem>
+                    <SelectItem value="chill">Chill Vibes</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <label className="font-semibold">Select Background</label>
+                <Select onValueChange={setBackground}>
+                  <SelectTrigger><SelectValue placeholder="Choose Background" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="studio">Studio White</SelectItem>
+                    <SelectItem value="summer">Summer Glow</SelectItem>
+                    <SelectItem value="urban">Urban Street</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <label className="font-semibold">Select Filter</label>
+                <Select onValueChange={setFilter}>
+                  <SelectTrigger><SelectValue placeholder="Choose Filter" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="bright">Bright Glow</SelectItem>
+                    <SelectItem value="vintage">Vintage Look</SelectItem>
+                    <SelectItem value="cool">Cool Tone</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-6">
+            <Button className="px-6 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-xl" onClick={handleSubmit}>
+              Generate Reel
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
