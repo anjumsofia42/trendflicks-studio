@@ -1,17 +1,11 @@
-mkdir client
-mkdir server
+# Clone your repo
+git clone https://github.com/anjumsofia42/trendflicks-studio.git
+cd trendflicks-studio
 
-# Move frontend React files into client/
-mv index.html client/
-mv src/ client/
-mv public/ client/
-mv package.json client/
-mv vite.config.js client/   # if using Vite
+# Delete all files
+rm -rf *
 
-# Move server.js into server/
-mv server.js server/
-
+# Commit and push
 git add .
-git commit -m "Moved frontend to client folder and backend to server folder"
+git commit -m "Cleaned up all files to start fresh"
 git push
-
